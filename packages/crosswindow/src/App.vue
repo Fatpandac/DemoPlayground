@@ -13,7 +13,7 @@ const { x, y, style } = useDraggable(el, {
 
 let interval = null;
 
-onMounted(async () => {
+onMounted(() => {
   interval = setInterval(function () {
     oldX.value = window.screenX;
     oldY.value = window.screenY;
