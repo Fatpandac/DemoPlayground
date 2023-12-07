@@ -2,18 +2,21 @@
   "name": "demoPlayground",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-  },
-  "keywords": [],
   "author": "",
   "license": "ISC",
+  "keywords": [],
+  "main": "index.js",
+  "scripts": {
+    "fix-lint": "eslint . --fix"
+  },
   "dependencies": {
     "@vueuse/core": "^10.6.1",
     "vue": "^3.3.4"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^2.3.4",
     "@vitejs/plugin-vue": "^4.4.0",
+    "eslint": "^8.55.0",
     "unocss": "^0.57.7",
     "vite": "^4.4.11",
     "vite-plugin-singlefile": "^0.13.5"

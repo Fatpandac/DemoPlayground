@@ -8,11 +8,11 @@
     "preview": "vite preview"
   },
   "peerDependencies": {
-    "vue": "*",
-    "vite": "*",
-    "unocss": "*",
-    "@vueuse/core": "*",
     "@vitejs/plugin-vue": "*",
-    "vite-plugin-singlefile": "*"
+    "@vueuse/core": "*",
+    "unocss": "*",
+    "vite": "*",
+    "vite-plugin-singlefile": "*",
+    "vue": "*"
   }
 }

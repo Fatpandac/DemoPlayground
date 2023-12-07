@@ -1,3 +1,16 @@
+<script setup>
+import { computed } from 'vue'
+
+const props = defineProps({
+  videoWidth: Number,
+  videoHeight: Number,
+  appendWidth: Number,
+  idx: Number,
+})
+
+const traingleSide = computed(() => Math.ceil(props.videoWidth / 2 + props.appendWidth))
+</script>
+
 <template>
   <svg
     :style="{
@@ -21,17 +34,3 @@
     />
   </svg>
 </template>
-
-<script setup>
-import { computed } from 'vue';
-
-const props = defineProps({
-  videoWidth: Number,
-  videoHeight: Number,
-  appendWidth: Number,
-  idx: Number,
-});
-
-const traingleSide = computed(() => Math.ceil(props.videoWidth / 2 + props.appendWidth));
-
-</script>

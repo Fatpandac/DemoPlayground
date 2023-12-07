@@ -1,41 +1,41 @@
 <script setup>
-import { onDeactivated, onMounted, ref, watch } from "vue";
-import { useDraggable } from "@vueuse/core";
+import { onDeactivated, onMounted, ref, watch } from 'vue'
+import { useDraggable } from '@vueuse/core'
 
-const bc = new BroadcastChannel("crosswindow");
+const bc = new BroadcastChannel('crosswindow')
 
-const oldX = ref(window.screenX);
-const oldY = ref(window.screenY);
-const el = ref();
+const oldX = ref(window.screenX)
+const oldY = ref(window.screenY)
+const el = ref()
 const { x, y, style } = useDraggable(el, {
   initialValue: { x: 40, y: 40 },
-});
+})
 
-let interval = null;
+let interval = null
 
 onMounted(() => {
-  interval = setInterval(function () {
-    oldX.value = window.screenX;
-    oldY.value = window.screenY;
-  }, 500);
-});
+  interval = setInterval(() => {
+    oldX.value = window.screenX
+    oldY.value = window.screenY
+  }, 500)
+})
 
 onDeactivated(() => {
-  clearInterval(interval);
-});
+  clearInterval(interval)
+})
 
 watch([x, y], (value) => {
-  const newValue = [oldX.value + value[0], oldY.value + value[1]];
+  const newValue = [oldX.value + value[0], oldY.value + value[1]]
 
-  bc.postMessage(newValue);
-});
+  bc.postMessage(newValue)
+})
 
 bc.onmessage = (ev) => {
-  const [passX, passY] = ev.data;
+  const [passX, passY] = ev.data
 
-  x.value = passX - oldX.value;
-  y.value = passY - oldY.value;
-};
+  x.value = passX - oldX.value
+  y.value = passY - oldY.value
+}
 </script>
 
 <template>
@@ -47,8 +47,8 @@ bc.onmessage = (ev) => {
     <span>[{{ x }}, {{ y }}]</span>
   </div>
   <div
-    class="h-40 w-40 bg-blue-300 fixed cursor-grab"
     ref="el"
+    class="h-40 w-40 bg-blue-300 fixed cursor-grab"
     :style="style"
-  ></div>
+  />
 </template>
