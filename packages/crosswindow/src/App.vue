@@ -1,6 +1,6 @@
 <script setup>
 import { onDeactivated, onMounted, ref, watch } from "vue";
-import { useDraggable, watchThrottled } from "@vueuse/core";
+import { useDraggable } from "@vueuse/core";
 
 const bc = new BroadcastChannel("crosswindow");
 
@@ -24,7 +24,7 @@ onDeactivated(() => {
   clearInterval(interval);
 });
 
-watchThrottled([x, y], (value) => {
+watch([x, y], (value) => {
   const newValue = [oldX.value + value[0], oldY.value + value[1]];
 
   bc.postMessage(newValue);
