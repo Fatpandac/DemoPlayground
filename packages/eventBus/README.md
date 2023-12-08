@@ -1,6 +1,6 @@
-# Panel
+# EventBus
 
-![screenshot](https://www.fatpandac.com/images/panel.gif)
+![screenshot](https://www.fatpandac.com/images/eventBus.gif)
 
 ## Project Setup
 
