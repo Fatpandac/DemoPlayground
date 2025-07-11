@@ -1,0 +1,18 @@
+{
+  "name": "Virtual List",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "peerDependencies": {
+    "@vitejs/plugin-vue": "*",
+    "@vueuse/core": "*",
+    "unocss": "*",
+    "vite": "*",
+    "vite-plugin-singlefile": "*",
+    "vue": "*"
+  }
+}
