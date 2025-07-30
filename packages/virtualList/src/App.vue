@@ -48,12 +48,28 @@ const showItems = computed(() => {
   return list.value.slice(startIndex, endIndex + 1)
 })
 
-const paddingHeight = computed(() => {
-  if (showItems.value[0].index === 0)
-    return { height: '0px' }
+const padding = computed(() => {
+  const bottomList = list.value.slice(
+    showItems.value[showItems.value.length - 1].index,
+  )
+  if (showItems.value[0].index === 0) {
+    return {
+      top: {
+        height: '0px',
+      },
+      bottom: {
+        height: `${bottomList.length * itemHeight.value}px`,
+      },
+    }
+  }
 
   return {
-    height: `${showItems.value[0].index * itemHeight.value - 10}px`,
+    top: {
+      height: `${showItems.value[0].index * itemHeight.value}px`,
+    },
+    bottom: {
+      height: `${bottomList.length * itemHeight.value}px`,
+    },
   }
 })
 
@@ -98,9 +114,9 @@ function topPos(item) {
     </div>
     <div
       ref="listRef"
-      class="w-96 h-96 min-w-[200px] bg-gray-100 rounded-lg shadow-lg p-4 overflow-y-auto relative scrollbar resize"
+      class="w-80 h-96 min-w-[200px] bg-gray-100 rounded-lg shadow-lg p-4 overflow-y-auto relative resize scrollbar"
     >
-      <div :style="paddingHeight" />
+      <div :style="padding.top" />
       <div
         v-for="(item, key) in showItems"
         ref="itemRef"
@@ -113,22 +129,22 @@ function topPos(item) {
       >
         <Card :item="item" />
       </div>
+      <div :style="padding.bottom" />
     </div>
   </div>
 </template>
 
 <style scoped>
-.scrollbar::-webkit-scrollbar {
-  width: 0px;
-}
-.scrollbar::-webkit-scrollbar-thumb {
-  background: transparent;
-}
 .scrollbar::-webkit-scrollbar-track {
-  background: transparent;
+  background: #f1f1f1;
+  border-radius: 0.5rem;
 }
-.scrollbar {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+.scrollbar::-webkit-scrollbar {
+  width: 12px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 0.5rem;
 }
 </style>
